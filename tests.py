@@ -74,6 +74,19 @@ class TestBooksCollector:
         # Проверяем, что все добавленные книги вернулись
         assert books_in_genre == books
  
+#Позитивная проверка get_books_genre: вывод текущего словаря books_genre
+    def test_get_books_genre_success(self, collector):
+        collector = BooksCollector()
+
+        collector.add_new_book('Шерлок Холмс')
+        collector.set_book_genre('Шерлок Холмс', 'Детективы')
+        collector.add_new_book('Горе от ума')
+        collector.set_book_genre('Горе от ума', 'Комедии')
+        assert collector.get_books_genre() == {
+            'Шерлок Холмс': 'Детективы',
+            'Горе от ума': 'Комедии'
+        }
+    
 
     def test_get_books_genre_new_collector_returns_empty_dict(self):
         collector = BooksCollector()
